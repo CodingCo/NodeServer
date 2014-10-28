@@ -10,6 +10,7 @@ var fs = require('fs');
 var routes = require('./routes/index');
 var users = require('./routes/users');
 var orders = require('./routes/orders');
+var orderViewer= require('./routes/orderViewer');
 var secureEntrance = require('./routes/secure-entrance');
 var logStream = fs.createWriteStream(__dirname + '/access.log', {flags: 'a'});
 var app = express();
@@ -33,6 +34,7 @@ if (app.get('env') === 'security') {
 app.use('/', routes);
 app.use('/users', users);
 app.use('/orders', orders);
+app.use('/orderViewer', orderViewer);
 
 // catch 404 and forward to error handler
 app.use(function (req, res, next) {

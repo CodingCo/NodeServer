@@ -5,12 +5,42 @@ block content
    .container
       h1 OrderViewer
 
-      table#orderTable.table.col-xs-10.col-sm-10.col-md-10.col-lg-10
-         tr
-            th ID
-            th Date
-            th Name
-            th Address
+      div.table-responsive
+         table.table#orderTable
+            thead
+               tr
+                  th ID
+                  th Date
+                  th Address
+                  th Country
+            tbody
+               tr
+                  td 1
+                  td 10-09-14
+                  td MyStreet 321
+                  td Ireland
+               tr
+                  td(colspan='4')
+                     p Random inger hammerik
+
+
+
+
+
+
+
+
+
+
+
+               // Loop through data
+   script(type='text/javascript').
+      $(document).ready(function(){
+         expander('orderTable');
+      });
+
+
+
 
 
 
