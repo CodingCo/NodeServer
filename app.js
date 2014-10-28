@@ -25,6 +25,9 @@ app.use(cookieParser());
 app.use(express.static(path.join(__dirname, 'public')));
 
 
+
+// DHJSK DHKSAHDJK AJKDDASh
+
 // SECURITY \\
 app.use(secureEntrance);
 
