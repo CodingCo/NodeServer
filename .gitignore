@@ -25,7 +25,7 @@ build/Release
 node_modules
 
 #configuration files
-setup.conf
+setup.json
 
 #junk
 .idea
