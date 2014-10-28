@@ -47,7 +47,7 @@ function getEmployees() {
             firstName: emp.firstName,
             title: emp.title,
             titleOfCourtesy: emp.titleOfCourtesy,
-            birthDate: emp.birthDate.substring(0, 10),
+            //birthDate: emp.birthDate.substring(0, 10),
             hireDate: emp.hireDate.substring(0, 10),
             address: emp.address,
             city: emp.city,
