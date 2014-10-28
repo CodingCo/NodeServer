@@ -22,8 +22,29 @@ var ProductSchema = mongoose.Schema({
 
 exports.ProductModel = mongoose.model('products', ProductSchema);
 
+
+var OrderSchema = mongoose.Schema({
+    _id: Number,
+    customerId: String,
+    employeeId: Number,
+    orderDate: String,
+    requiredDate: String,
+    shippedDate: String,
+    shipVia: String,
+    freight: Number,
+    shipName: String,
+    shipAddress: String,
+    shipCity: String,
+    shipRegion: String,
+    shipPostalCode: String,
+    shipCountry: String
+});
+
+exports.OrderModel = mongoose.model('orders', OrderSchema);
+
+
 var DetailsSchema = mongoose.Schema({
-    orderId: Number,
+    orderId: {type: Number, ref: 'orders'},
     productId: Number,
     unitPrice: Number,
     quantity: Number,
@@ -68,21 +89,3 @@ var EmployeeSchema = mongoose.Schema({
 
 exports.EmployeeModel = mongoose.model('employees', EmployeeSchema);
 
-var OrderSchema = mongoose.Schema({
-    _id: Number,
-    customerId: String,
-    employeeId: Number,
-    orderDate: String,
-    requiredDate: String,
-    shippedDate: String,
-    shipVia: String,
-    freight: Number,
-    shipName: String,
-    shipAddress: String,
-    shipCity: String,
-    shipRegion: String,
-    shipPostalCode: String,
-    shipCountry: String
-});
-
-exports.OrderModel = mongoose.model('orders', OrderSchema);

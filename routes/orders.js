@@ -4,15 +4,13 @@ var router = express.Router();
 
 router.get('/', function (request, response) {
     db.connect();
-    db.getAllOrders(function (err, data) {
+    db.getAll(function (err, data) {
         if (err) {
-            response.send("No data was found");
+            response.send(err);
         }
         response.send(data);
 
     });
-    //response.render('index', {data: [1, {name: "simon"}, 3, 4, 5, 6, 67, 7, 8, 8]});
-
 });
 
 
