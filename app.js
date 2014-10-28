@@ -7,10 +7,10 @@ var bodyParser = require('body-parser');
 var routes = require('./routes/index');
 var users = require('./routes/users');
 
-//TODO: Create new database file with connection, close and search queries
+
 //var db = require('./database/import_database');
 var orders = require('./routes/orders');
-
+var secureEntrance = require('./routes/secure-entrance');
 var app = express();
 
 // view engine setup \\
@@ -19,13 +19,17 @@ app.set('view engine', 'jade');
 
 app.use(favicon(__dirname + '/public/favicon.ico'));
 app.use(logger('dev'));
-app.use(bodyParser.json());
+app.use(bodyParser.json({}));
 app.use(bodyParser.urlencoded({extended: false}));
 app.use(cookieParser());
-app.use('public', express.static(path.join(__dirname, 'public')));
+app.use(express.static(path.join(__dirname, 'public')));
+
+
+
+// DHJSK DHKSAHDJK AJKDDASh
 
 // SECURITY \\
-
+app.use(secureEntrance);
 
 // ROUTERS \\
 app.use('/', routes);
@@ -48,7 +52,7 @@ if (app.get('env') === 'development') {
         res.render('error', {
             message: err.message,
             statusCode: err.status,
-            error: err
+            errorStack: err
         });
     });
 }
@@ -60,7 +64,8 @@ if (app.get('env') === 'production') {
         res.render('error', {
             message: err.message,
             statusCode: err.status,
-            error: {}
+            errorStack: "We have highly trained coding ninjas " +
+            "to handle this stuff, just wait for them to finish"
         });
     });
 }
