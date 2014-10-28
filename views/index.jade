@@ -1,7 +1,10 @@
 extends layout
 
 block content
-  div.container
-    div.well
-      h1 #{title}
-    p Welcome to #{title}
+    div.container
+        div.well
+            h1 #{title}
+        p Welcome to #{title}
+        ul
+        - for (var x = 0; x < 3; x++)
+            li=data[1].name
