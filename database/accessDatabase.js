@@ -16,6 +16,24 @@ var getAllOrders = function (callback) {
     })
 };
 
+var getAllCustomers = function (callback){
+    model.CustomerModel.find({}, function (err, data) {
+        if (err) {
+            return callback(err);
+        }
+        return callback(null, data);
+    })
+};
+
+var getCustomer = function (callback, idString){
+    model.CustomerModel.findOne({_id : idString}, function (err, data) {
+        if (err) {
+            return callback(err);
+        }
+        return callback(null, data);
+    })
+}
+
 
 var close = function () {
     mongoose.connection.close();
@@ -23,8 +41,10 @@ var close = function () {
 
 
 module.exports = {
-    connect: connect,
-    close: close,
-    getAllOrders: getAllOrders
+    connect : connect,
+    close : close,
+    getAllOrders : getAllOrders,
+    getAllCustomers : getAllCustomers,
+    getCustomer : getCustomer
     //getOrderDetails:
 };
