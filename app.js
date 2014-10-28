@@ -1,5 +1,3 @@
-// test another test
-// test a third test
 var express = require('express');
 var path = require('path');
 var favicon = require('serve-favicon');
@@ -9,13 +7,17 @@ var bodyParser = require('body-parser');
 var routes = require('./routes/index');
 var users = require('./routes/users');
 
+//TODO: Create new database file with connection, close and search queries
+//var db = require('./database/import_database');
+var orders = require('./routes/orders');
+
 var app = express();
 
 // view engine setup \\
 app.set('views', path.join(__dirname, 'views'));
 app.set('view engine', 'jade');
 
-//app.use(favicon(__dirname + '/public/favicon.ico'));
+app.use(favicon(__dirname + '/public/favicon.ico'));
 app.use(logger('dev'));
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({extended: false}));
@@ -28,6 +30,7 @@ app.use('public', express.static(path.join(__dirname, 'public')));
 // ROUTERS \\
 app.use('/', routes);
 app.use('/users', users);
+app.use('/orders', orders);
 
 // catch 404 and forward to error handler
 app.use(function (req, res, next) {
@@ -44,6 +47,7 @@ if (app.get('env') === 'development') {
         res.status(err.status || 500);
         res.render('error', {
             message: err.message,
+            statusCode: err.status,
             error: err
         });
     });
@@ -55,10 +59,10 @@ if (app.get('env') === 'production') {
         res.status(err.status || 500);
         res.render('error', {
             message: err.message,
+            statusCode: err.status,
             error: {}
         });
     });
 }
-// Test fra mig
 
 module.exports = app;
