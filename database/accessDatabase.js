@@ -1,6 +1,6 @@
 var mongoose = require('mongoose');
 var model = require('./model');
-var dbUrl = "mongodb://localhost/northwind";
+var dbUrl = "mongodb://test:test@ds047440.mongolab.com:47440/joindb";
 
 
 var connect = function connectToDatabase() {
@@ -10,17 +10,26 @@ var connect = function connectToDatabase() {
 
 var getOrderDetailsProducts = function (callback) {
 
-    model.DetailsModel.find().populate({
-        path: 'orderId'
-        //match: { age: { $gte: 21 }},
-        //select: 'name -_id',
 
-    }).exec(function (err, details) {
+    model.DetailsModel.find().populate('order product').exec(function (err, details) {
         if (err) {
             return callback(err);
         }
         return callback(null, details);
-    })
+    });
+
+
+    //   model.DetailsModel.find().populate({
+    //       path: 'orderId'
+    //       //match: { age: { $gte: 21 }},
+    //       //select: 'name -_id',
+    //
+    //   }).exec(function (err, details) {
+    //       if (err) {
+    //           return callback(err);
+    //       }
+    //       return callback(null, details);
+    //   })
 };
 
 

@@ -11,7 +11,7 @@ exports.CategoryModel = mongoose.model('categories', CategorySchema);
 var ProductSchema = mongoose.Schema({
     _id: Number,
     name: String,
-    categoryId: Number,
+    category: {type: Number, ref: 'categories'},
     quantityPerUnit: String,
     unitPrice: Number,
     unitsInStock: Number,
@@ -22,11 +22,20 @@ var ProductSchema = mongoose.Schema({
 
 exports.ProductModel = mongoose.model('products', ProductSchema);
 
+var DetailsSchema = mongoose.Schema({
+    order: {type: Number, ref: 'orders'},
+    product: {type: Number, ref: 'products'},
+    unitPrice: Number,
+    quantity: Number,
+    discount: Number
+});
+
+exports.DetailsModel = mongoose.model('orderdetails', DetailsSchema);
 
 var OrderSchema = mongoose.Schema({
     _id: Number,
-    customerId: String,
-    employeeId: Number,
+    customer: {type: String, ref: 'customers'},
+    employee: {type: Number, ref: 'employees'},
     orderDate: String,
     requiredDate: String,
     shippedDate: String,
@@ -42,16 +51,6 @@ var OrderSchema = mongoose.Schema({
 
 exports.OrderModel = mongoose.model('orders', OrderSchema);
 
-
-var DetailsSchema = mongoose.Schema({
-    orderId: {type: Number, ref: 'orders'},
-    productId: Number,
-    unitPrice: Number,
-    quantity: Number,
-    discount: Number
-});
-
-exports.DetailsModel = mongoose.model('orderdetails', DetailsSchema);
 
 var CustomerSchema = mongoose.Schema({
     _id: String,
@@ -88,4 +87,5 @@ var EmployeeSchema = mongoose.Schema({
 });
 
 exports.EmployeeModel = mongoose.model('employees', EmployeeSchema);
+
 

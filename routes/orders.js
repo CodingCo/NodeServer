@@ -7,9 +7,10 @@ router.get('/', function (request, response) {
     db.getAll(function (err, data) {
         if (err) {
             response.send(err);
+            db.close();
         }
-        response.send(data);
-
+        response.render('');
+        db.close();
     });
 });
 
