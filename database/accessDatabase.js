@@ -1,6 +1,6 @@
 var mongoose = require('mongoose');
 var model = require('./model');
-var dbUrl = "mongodb://test:test@ds047440.mongolab.com:47440/joindb";
+var dbUrl = "mongodb://admin:admin@ds047030.mongolab.com:47030/mongo_exercise_db";
 
 
 var connect = function connectToDatabase() {

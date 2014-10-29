@@ -9,6 +9,9 @@ router.get('/', function (request, response) {
             response.send(err);
             db.close();
         }
+
+        console.log("The data looks like: " + data.length);
+
         response.render('order-viewer', {data:data});
         db.close();
     });
