@@ -7,8 +7,8 @@ var connect = function connectToDatabase() {
     mongoose.connect(url);
 };
 
-var getOrderDetailsProducts = function (callback) {
-    model.DetailsModel.find().populate('order product').exec(function (err, details) {
+var getOrderDetailsProducts = function (page, results, callback) {
+    model.DetailsModel.find().populate('order product').limit(results).skip(results*page).exec(function (err, details) {
         if (err) {
             return callback(err);
         }
@@ -22,16 +22,16 @@ var getAllOrders = function (callback) {
             return callback(err);
         }
         return callback(null, data);
-    })
+    });
 };
 
 var getAllCustomers = function (callback) {
-    model.CustomerModel.find({}, function (err, data) {
+    model.CustomerModel.find().limit(20).exec( function (err, data) {
         if (err) {
             return callback(err);
         }
         return callback(null, data);
-    })
+    });
 };
 
 var getCustomer = function (idString, callback) {
@@ -40,7 +40,7 @@ var getCustomer = function (idString, callback) {
             return callback(err);
         }
         return callback(null, data);
-    })
+    });
 };
 
 var close = function () {
