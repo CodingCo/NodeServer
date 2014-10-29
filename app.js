@@ -8,8 +8,8 @@ var fs = require('fs');
 
 
 var routes = require('./routes/index');
-var users = require('./routes/users');
 var orders = require('./routes/orders');
+var employee = require('./routes/employee');
 var secureEntrance = require('./routes/secure-entrance');
 var logStream = fs.createWriteStream(__dirname + '/access.log', {flags: 'a'});
 var app = express();
