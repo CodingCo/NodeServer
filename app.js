@@ -8,8 +8,9 @@ var fs = require('fs');
 
 
 var routes = require('./routes/index');
-var users = require('./routes/users');
 var orders = require('./routes/orders');
+var employee = require('./routes/employee');
+var customer = require('./routes/customer');
 var secureEntrance = require('./routes/secure-entrance');
 var logStream = fs.createWriteStream(__dirname + '/access.log', {flags: 'a'});
 var app = express();
@@ -31,8 +32,9 @@ if (app.get('env') === 'security') {
 }
 // ROUTERS \\
 app.use('/', routes);
-app.use('/users', users);
 app.use('/orders', orders);
+app.use('/employee', employee);
+app.use('/customer', customer);
 
 // catch 404 and forward to error handler
 app.use(function (req, res, next) {

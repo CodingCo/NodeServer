@@ -3,8 +3,7 @@ var async = require('async');
 var mongoose = require('mongoose');
 var model = require('./model');
 
-var dbUrl = "mongodb://admin:admin@ds047030.mongolab.com:47030/mongo_exercise_db";
-
+var dbUrl = "mongodb://localhost/webshop";
 
 function readData(path) {
     var file = fs.readFileSync(path, 'utf8');
