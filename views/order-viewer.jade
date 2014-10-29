@@ -35,44 +35,65 @@ block content
     .container
         h1 OrderViewer
 
-    .container
-
-        div.table-responsive
-            table.table#orderTable
-                thead
-                    tr
-                        th ID
-                        th Date
-                        th Address
-                        th Country
-                tbody
-                for x in data
-                    tr
-                        td #{x.name}
-                        td #{x.age}
-                        td MyStreet 321
-                        td Ireland
-                    tr
-                        td.expandedView(colspan='4')
-                            p #{data.length}
+        div.col-lg-10.col-lg-offset-1
+            div.panel.panel-default
+                div.panel-body
+                    table.table.table-condensed(style='border-collapse:collapse;')
+                        thead
+                            tr
+                                th ID
+                                th DATE
+                                th Name
+                                th Address
+                        tbody
 
 
-    script(type='text/javascript').
-        $(document).ready(function () {
-            expander('orderTable');
-        });
+                            - for(var i = 0; i < 101; ++i){
+                                tr.accordion-toggle(data-toggle='collapse', data-target='#' + i)
+                                    td= i
+                                    td orderblabla
+                                    td nameblabla
+                                    td det noget med noget address
+                                tr
+                                    td.hiddenRow(colspan='12')
+                                        div.accordian-body.collapse(id=i)
+                                            table.table.table-striped
+                                                thead
+                                                    tr
+                                                        td
+                                                            ul
+                                                                li Id:
+                                                                li Date:
+                                                                li Required:
+                                                                li Shipped:
+                                                        td
+                                                            ul
+                                                                li Name:
+                                                                li Address:
+                                                                li City:
+                                                                li Zip:
+                                                                li Country:
+                                                    tr
+                                                        th Product
+                                                        th UnitPrice
+                                                        th Quantity
+                                                        th Discount
+                                                        th Price
+                                                tbody
+                                                    tr
+                                                        td #
+                                                        td #
+                                                        td #
+                                                        td #
+                                                        td wow! such math
+                                                    tr
+                                                        td Total
+                                                        td
+                                                        td
+                                                        td
+                                                        td sum
 
-
-
-
-
-
-
-
-
-
-
-
+                            - }
 
 
 
