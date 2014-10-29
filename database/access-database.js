@@ -24,7 +24,7 @@ var getAllCustomers = function (callback) {
         return callback(null, data);
     })
 };
-
+//TODO: den her
 var getCustomer = function (id, callback) {
     model.CustomerModel.findOne({_id: id}, function (err, data) {
         if (err) {
