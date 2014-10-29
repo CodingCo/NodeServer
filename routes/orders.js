@@ -9,10 +9,11 @@ router.get('/', function (request, response) {
             response.send(err);
             db.close();
         }
-        response.render('');
+        response.render('order-viewer', {data:data});
         db.close();
     });
-});
 
+
+});
 
 module.exports = router;
