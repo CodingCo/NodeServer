@@ -14,7 +14,7 @@ router.get('/:id', function (request, response) {
             db.close();
             return;
         }
-        console.log(customer);
+
         response.render('user', {customer: customer});
         db.close();
     })
