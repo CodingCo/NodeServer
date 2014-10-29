@@ -3,7 +3,7 @@ var async = require('async');
 var mongoose = require('mongoose');
 var model = require('./model');
 
-var dbUrl = "mongodb://localhost/northwind";
+var dbUrl = "mongodb://localhost/webshop";
 
 function readData(path) {
     var file = fs.readFileSync(path, 'utf8');

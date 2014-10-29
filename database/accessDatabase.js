@@ -1,5 +1,8 @@
 var mongoose = require('mongoose');
 var model = require('./model');
+var url = "mongodb://localhost/webshop";
+
+
 var connect = function connectToDatabase() {
     mongoose.connect(url);
 };
