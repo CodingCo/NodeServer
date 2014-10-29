@@ -12,8 +12,6 @@ router.get('/', function (request, response) {
         response.render('order-viewer', {data:data});
         db.close();
     });
-
-
 });
 
 module.exports = router;

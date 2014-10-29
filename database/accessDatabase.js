@@ -1,37 +1,17 @@
 var mongoose = require('mongoose');
 var model = require('./model');
-var dbUrl = "mongodb://test:test@ds047440.mongolab.com:47440/joindb";
-
-
 var connect = function connectToDatabase() {
-    mongoose.connect(dbUrl);
+    mongoose.connect(url);
 };
 
-
 var getOrderDetailsProducts = function (callback) {
-
-
     model.DetailsModel.find().populate('order product').exec(function (err, details) {
         if (err) {
             return callback(err);
         }
         return callback(null, details);
     });
-
-
-    //   model.DetailsModel.find().populate({
-    //       path: 'orderId'
-    //       //match: { age: { $gte: 21 }},
-    //       //select: 'name -_id',
-    //
-    //   }).exec(function (err, details) {
-    //       if (err) {
-    //           return callback(err);
-    //       }
-    //       return callback(null, details);
-    //   })
 };
-
 
 var getAllOrders = function (callback) {
     model.OrderModel.find({}, function (err, data) {
@@ -60,11 +40,9 @@ var getCustomer = function (idString, callback) {
     })
 };
 
-
 var close = function () {
     mongoose.connection.close();
 };
-
 
 module.exports = {
     connect: connect,
