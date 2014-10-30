@@ -13,6 +13,7 @@ var employee = require('./routes/employee');
 var customer = require('./routes/customer');
 var secureEntrance = require('./routes/secure-entrance');
 var logStream = fs.createWriteStream(__dirname + '/access.log', {flags: 'a'});
+var db = require('./database/access-database');
 var app = express();
 
 
@@ -24,6 +25,10 @@ app.use(bodyParser.json({}));
 app.use(bodyParser.urlencoded({extended: false}));
 app.use(cookieParser());
 app.use(express.static(path.join(__dirname, 'public')));
+app.use(function (req, res, next) {
+    req.db = db;
+    next();
+});
 
 
 // SECURITY \\

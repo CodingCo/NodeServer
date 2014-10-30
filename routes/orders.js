@@ -1,17 +1,21 @@
 var express = require('express');
-var db = require('../database/access-database');
 var router = express.Router();
 
-router.get('/', function (request, response) {
-    db.connect();
-    db.getAdvancedDetail(function (err, data) {
+router.get('/:page/:results', function (request, response) {
+    var numberOfResults = request.params.page;
+    var currentPage = request.params.results;
+
+    request.db.getAdvancedDetail(numberOfResults, currentPage, function (err, data) {
         if (err) {
             response.send(err);
-            db.close();
         }
         response.render('order-viewer', {data: data});
-        db.close();
     });
+});
+
+
+router.post('/', function(req,res){
+
 });
 
 module.exports = router;
