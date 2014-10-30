@@ -17,7 +17,7 @@ block content
                                         td Name
                                         td Address
                                         s
-            - var from = 50
+            - var from = 0
             - var to = from + 50
             - for(var i = from; i < to; i++){
 
@@ -92,6 +92,11 @@ block content
                                         td YET
                                         td sum
             - }
+
+            button.btn.btn-default
+                span.glyphicon.glyphicon-arrow-left 0
+            button.btn.btn-default 50
+                span.glyphicon.glyphicon-arrow-right
 
 
             script(type='text/javascript').
