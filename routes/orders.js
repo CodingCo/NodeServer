@@ -12,13 +12,14 @@ router.get('/', function (request, response) {
 });
 
 router.get('/:page/:results', function (request, response) {
-    var numberOfResults = request.params.page;
-    var currentPage = request.params.results;
+    var numberOfResults = request.params.results;
+    var currentPage = request.params.page;
 
     request.db.getAdvancedDetail(currentPage, numberOfResults, function (err, data) {
         if (err) {
             response.send(err);
         }
+        console.log("hello world");
         response.render('order-viewer', {data: data});
     });
 });
@@ -28,7 +29,7 @@ router.put('/', function (req, res) {
     console.log("");
 });
 
-router.put('/', function (req, res) {
+router.delete('/', function (req, res) {
     console.log("");
 });
 
