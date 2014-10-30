@@ -17,10 +17,28 @@ process.on('SIGTERM', function () {
     });
 });
 
+var close = function () {
+    mongoose.connection.close();
+};
+
 
 var connect = function connectToDatabase() {
     mongoose.connect(url);
+
+    mongoose.connection.on('connected', function () {
+        console.log("Connected to db");
+    });
+
+    mongoose.connection.on('error', function (err) {
+        console.log('Mongoose connection error: ' + err);
+    });
+
+    mongoose.connection.on('disconnected', function () {
+        console.log('Mongoose disconnected');
+    });
 };
+connect();
+
 
 var getOrderDetailsProducts = function (page, results, callback) {
     model.DetailsModel.find().populate('order product').limit(results).skip(results * page).exec(function (err, details) {
@@ -50,7 +68,7 @@ var getEmployee = function (id, callback) {
 };
 
 var getCustomer = function (id, callback) {
-    model.CustomerModel.findOne({_id: idString}, function (err, data) {
+    model.CustomerModel.findOne({_id: id}, function (err, data) {
         if (err) {
             return callback(err);
         }
@@ -58,9 +76,6 @@ var getCustomer = function (id, callback) {
     })
 };
 
-var close = function () {
-    mongoose.connection.close();
-};
 
 module.exports = {
     connect: connect,
