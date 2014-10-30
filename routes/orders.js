@@ -9,7 +9,6 @@ router.get('/', function (request, response) {
             response.send(err);
             db.close();
         }
-        response.setEncoding('utf8');
         response.render('order-viewer', {data: data});
         db.close();
     });
