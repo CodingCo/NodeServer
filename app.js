@@ -11,6 +11,7 @@ var routes = require('./routes/index');
 var orders = require('./routes/orders');
 var employee = require('./routes/employee');
 var customer = require('./routes/customer');
+var verify = require('./routes/verify');
 var secureEntrance = require('./routes/secure-entrance');
 var logStream = fs.createWriteStream(__dirname + '/access.log', {flags: 'a'});
 var db = require('./database/access-database');
@@ -40,6 +41,7 @@ app.use('/', routes);
 app.use('/orders', orders);
 app.use('/employee', employee);
 app.use('/customer', customer);
+app.use('/verify', verify);
 
 // catch 404 and forward to error handler
 app.use(function (req, res, next) {
