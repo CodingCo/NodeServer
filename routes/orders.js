@@ -3,7 +3,7 @@ var router = express.Router();
 
 
 router.get('/', function (request, response) {
-    request.db.getAllOrder(function (err, data) {
+    request.db.getAll(function (err, data) {
         if (err) {
             response.send(err);
         }
