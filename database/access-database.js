@@ -16,6 +16,15 @@ var getOrderDetailsProducts = function (callback) {
     });
 };
 
+var getAllOrders = function (callback) {
+    model.OrderModel.find({}, function (err, data) {
+        if (err) {
+            return callback(err);
+        }
+        return callback(null, data);
+    })
+};
+
 var getAllCustomers = function (callback) {
     model.CustomerModel.find({}, function (err, data) {
         if (err) {
@@ -24,25 +33,15 @@ var getAllCustomers = function (callback) {
         return callback(null, data);
     })
 };
-//TODO: den her
-var getCustomer = function (id, callback) {
-    model.CustomerModel.findOne({_id: id}, function (err, data) {
+
+var getCustomer = function (idString, callback) {
+    model.CustomerModel.findOne({_id: idString}, function (err, data) {
         if (err) {
             return callback(err);
         }
         return callback(null, data);
     })
 };
-
-var getEmployee = function (id, callback) {
-    model.EmployeeModel.findOne({_id: id}, function (err, data) {
-        if (err) {
-            return callback(err);
-        }
-        return callback(null, data);
-    })
-};
-
 
 var close = function () {
     mongoose.connection.close();
@@ -51,8 +50,9 @@ var close = function () {
 module.exports = {
     connect: connect,
     close: close,
+    getAllOrders: getAllOrders,
     getAllCustomers: getAllCustomers,
     getCustomer: getCustomer,
-    getEmployee: getEmployee,
-    getAdvancedDetail: getOrderDetailsProducts
+    getAll: getOrderDetailsProducts
+    //getOrderDetails:
 };
