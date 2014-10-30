@@ -32,68 +32,81 @@ block content
                                 a(href='#') Link to another page
 
 
-    .container
-        h1 OrderViewer
-
-        div.col-lg-10.col-lg-offset-1
+    div.container-fluid
+        div#accordion.panel-group.col-lg-10.col-lg-offset-1
             div.panel.panel-default
-                div.panel-body
-                    table.table.table-condensed(style='border-collapse:collapse;')
-                        thead
-                            tr
-                                th ID
-                                th DATE
-                                th Name
-                                th Address
-                        tbody
+                div.panel-heading
+                    h4.panel-title
+                        a(data-toggle='collapse', data-parent='#accordion')
+                            table.table.fourRow
+                                thead
+                                    tr
+                                        td ID
+                                        td Date
+                                        td Name
+                                        td Address
+                                        td(width='12%') Edit
+            - for(var i = 0; i < data.length; i++){
+
+                div.panel.panel-default
+                    div.panel-heading
+                        h4.panel-title
+                            a(data-toggle='collapse', data-parent='#accordion', href='#collapse' + i)
+                                table.table.fourRow
+                                    thead
+                                        tr
+                                            td #{data[i].order._id}
+                                            td #{data[i].order.shippedDate}
+                                            td #{data[i].order.shipName}
+                                            td #{data[i].order.shipAddress}
+                                            td(width='12%')
+                                                .btn-group
+                                                    button.btn.btn-primary
+                                                        span.glyphicon.glyphicon-pencil
+                                                    button.btn.btn-danger
+                                                        span.glyphicon.glyphicon-remove
 
 
-                            - for(var i = 0; i < 101; ++i){
-                                tr.accordion-toggle(data-toggle='collapse', data-target='#' + i)
-                                    td= i
-                                    td orderblabla
-                                    td nameblabla
-                                    td det noget med noget address
+                div.panel-collapse.collapse(id='collapse' + i)
+                        div.panel-body
+                            table.table.table-striped
+                                thead
+                                    tr
+                                        td
+                                            ul
+                                                li Id: #{data[i].order._id}
+                                                li Date: #{data[i].order.shippedDate}
+                                                li Required: #{data[i].order.requiredDate}
+                                                li Shipped: #{data[i].order.shippedDate}
+                                        td
+                                            ul
+                                                li Name: #{data[i].order.shipName}
+                                                li Address: #{data[i].order.shipAddress}
+                                                li City: #{data[i].order.shipCity}
+                                                li Zip: #{data[i].order.shipPostalCode}
+                                                li Country: #{data[i].order.shipCountry}
+                            table.table.table-striped
                                 tr
-                                    td.hiddenRow(colspan='12')
-                                        div.accordian-body.collapse(id=i)
-                                            table.table.table-striped
-                                                thead
-                                                    tr
-                                                        td
-                                                            ul
-                                                                li Id:
-                                                                li Date:
-                                                                li Required:
-                                                                li Shipped:
-                                                        td
-                                                            ul
-                                                                li Name:
-                                                                li Address:
-                                                                li City:
-                                                                li Zip:
-                                                                li Country:
-                                                    tr
-                                                        th Product
-                                                        th UnitPrice
-                                                        th Quantity
-                                                        th Discount
-                                                        th Price
-                                                tbody
-                                                    tr
-                                                        td #
-                                                        td #
-                                                        td #
-                                                        td #
-                                                        td wow! such math
-                                                    tr
-                                                        td Total
-                                                        td
-                                                        td
-                                                        td
-                                                        td sum
-
-                            - }
-
-
-
+                                    th Product
+                                    th UnitPrice
+                                    th Quantity
+                                    th Discount
+                                    th Price
+                                tr
+                                    td #{data[i].product.name}
+                                        td #{data[i].product.unitPrice}
+                                        td #{data[i].quantity}
+                                        td #{data[i].discount}
+                                        - var unitPrice = data[i].product.unitPrice
+                                        - var quantity = data[i].quantity
+                                        - var discount = data[i].discount
+                                        - var price = (unitPrice * quantity - (unitPrice))
+                                        - var fullPrice = price - (price * discount)
+                                        td= fullPrice
+                                tr
+                                    td Total
+                                    td NOT
+                                    td IMPLEMENTED
+                                    td YET
+                                    td sum
+            - }

@@ -49,6 +49,8 @@ var getOrderDetailsProducts = function (page, results, callback) {
     });
 };
 
+
+
 var getAllCustomers = function (page, results,callback) {
     model.CustomerModel.find().limit(results).skip(results * page).exec(function (err, data) {
         if (err) {
@@ -58,13 +60,22 @@ var getAllCustomers = function (page, results,callback) {
     });
 };
 
+var getAll = function (callback) {
+    model.DetailsModel.find().populate('order product').exec(function (err, details) {
+        if (err) {
+            return callback(err);
+        }
+        return callback(null, details);
+    });
+};
+
 var getEmployee = function (id, callback) {
     model.EmployeeModel.findOne({_id: id}, function (err, data) {
         if (err) {
             return callback(err);
         }
         return callback(null, data);
-    });
+    })
 };
 
 var getCustomer = function (id, callback) {
@@ -73,7 +84,7 @@ var getCustomer = function (id, callback) {
             return callback(err);
         }
         return callback(null, data);
-    });
+    })
 };
 
 var deleteOrderDetails = function (id, callback) {
@@ -97,6 +108,7 @@ module.exports = {
     getCustomer: getCustomer,
     getEmployee: getEmployee,
     getAdvancedDetail: getOrderDetailsProducts,
+    getAll: getAll,
     deleteOrderDetails: deleteOrderDetails,
     updateOrderDetails: updateOrderDetails
 };
