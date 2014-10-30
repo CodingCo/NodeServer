@@ -4,7 +4,7 @@ var router = express.Router();
 
 router.get('/', function (request, response) {
     db.connect();
-    db.getAdvancedDetail(function (err, data) {
+    db.getAdvancedDetails(function (err, data) {
         if (err) {
             response.send(err);
             db.close();

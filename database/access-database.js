@@ -3,6 +3,21 @@ var model = require('./model');
 var url = "mongodb://localhost/webshop";
 
 
+process.on('SIGINT', function () {
+    mongoose.connection.close(function () {
+        console.log('Disconnected through app termination');
+        process.exit(0);
+    });
+});
+
+process.on('SIGTERM', function () {
+    mongoose.connection.close(function () {
+        console.log('Disconnected through app Something');
+        process.exit(0);
+    });
+});
+
+
 var connect = function connectToDatabase() {
     mongoose.connect(url);
 };
@@ -53,6 +68,6 @@ module.exports = {
     getAllOrders: getAllOrders,
     getAllCustomers: getAllCustomers,
     getCustomer: getCustomer,
-    getAll: getOrderDetailsProducts
+    getAdvancedDetails: getOrderDetailsProducts
     //getOrderDetails:
 };
