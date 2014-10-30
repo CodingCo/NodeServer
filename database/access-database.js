@@ -49,13 +49,13 @@ var getOrderDetailsProducts = function (page, results, callback) {
     });
 };
 
-var getAllCustomers = function (callback) {
-    model.CustomerModel.find({}, function (err, data) {
+var getAllCustomers = function (page, results,callback) {
+    model.CustomerModel.find().limit(results).skip(results * page).exec(function (err, data) {
         if (err) {
             return callback(err);
         }
         return callback(null, data);
-    })
+    });
 };
 
 var getEmployee = function (id, callback) {
@@ -64,7 +64,7 @@ var getEmployee = function (id, callback) {
             return callback(err);
         }
         return callback(null, data);
-    })
+    });
 };
 
 var getCustomer = function (id, callback) {
@@ -73,7 +73,20 @@ var getCustomer = function (id, callback) {
             return callback(err);
         }
         return callback(null, data);
-    })
+    });
+};
+
+var deleteOrderDetails = function (id, callback) {
+    model.DetailsModel.findOne({_id: id}).remove(callback);
+};
+
+var updateOrderDetails = function (id, orderId, productId, unitPrice, quantity, discount, callback) {
+    model.DetailsModel.update({_id: id}, { $set: { orderId: orderId }},
+        {$set: {productId: productId}},
+        {$set: {unitPrice: unitPrice}},
+        {$set: {quantity: quantity}},
+        {$set: {discount: discount}},
+        callback);
 };
 
 
@@ -83,5 +96,7 @@ module.exports = {
     getAllCustomers: getAllCustomers,
     getCustomer: getCustomer,
     getEmployee: getEmployee,
-    getAdvancedDetail: getOrderDetailsProducts
+    getAdvancedDetail: getOrderDetailsProducts,
+    deleteOrderDetails: deleteOrderDetails,
+    updateOrderDetails: updateOrderDetails
 };
