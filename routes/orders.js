@@ -25,14 +25,15 @@ router.get('/:page/:results', function (request, response) {
 });
 
 
-router.put('/', function (req, res) {
+router.put('/', function (request, response) {
+
     console.log("");
 });
 
 router.delete('/:id', function (request, response) {
     var id = request.params.id;
 
-    request.db.deleteOrderDetails(id,function(err, data){
+    request.db.deleteOrderDetails(id,function(err){
         if (err) {
             response.send(err);
         }
