@@ -104,6 +104,7 @@ var updateOrderDetails = function (id, orderId, productId, unitPrice, quantity, 
 module.exports = {
     connect: connect,
     close: close,
+    connection: mongoose.connection,
     getAllCustomers: getAllCustomers,
     getCustomer: getCustomer,
     getEmployee: getEmployee,
