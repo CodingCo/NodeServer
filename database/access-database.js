@@ -49,6 +49,16 @@ var getOrderDetailsProducts = function (page, results, callback) {
     });
 };
 
+var getAll = function (callback) {
+    model.DetailsModel.find().populate('order product').exec(function (err, details) {
+        if (err) {
+            return callback(err);
+        }
+        return callback(null, details);
+    });
+};
+
+
 var getAllCustomers = function (callback) {
     model.CustomerModel.find({}, function (err, data) {
         if (err) {
@@ -80,6 +90,7 @@ var getCustomer = function (id, callback) {
 module.exports = {
     connect: connect,
     close: close,
+    getAllOrder: getAll,
     getAllCustomers: getAllCustomers,
     getCustomer: getCustomer,
     getEmployee: getEmployee,
