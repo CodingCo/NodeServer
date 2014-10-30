@@ -47,6 +47,10 @@ block content
                     span.glyphicon.glyphicon-chevron-left
                     |  Back
 
-        script.
-            $(".container").addEventListener("click", function() { alert("alert");});
-            //$('#content').load('orders');
+        script(type="text/javascript").
+            var button = document.getElementById("backbtn");
+            button.addEventListener("click", function() { $.get( "../orders/20/0", function( data ) {
+                }).done(function(data){
+                $("html").html(data);
+                });});
+            //$('.content').load('localhost:3000/orders/20/0');
