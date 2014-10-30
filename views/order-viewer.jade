@@ -3,35 +3,6 @@ extends layout
 
 block content
 
-    nav.navbar.navbar-inverse(role='navigation')
-        div.container-fluid
-            // Brand and toggle get grouped for better mobile display
-            div.navbar-header
-                button.navbar-toggle.collapsed(type='button', data-toggle='collapse', data-target='#bs-example-navbar-collapse-1')
-                    span.sr-only Toggle navigation
-                    span.icon-bar
-                    span.icon-bar
-                    span.icon-bar
-                a.navbar-brand(href='#') Brand
-
-            div#bs-example-navbar-collapse-1.collapse.navbar-collapse
-                ul.nav.navbar-nav.navbar-right
-                    li.dropdown
-                        a.dropdown-toggle(href='#', data-toggle='dropdown')
-                            | Dropdown
-                            span.caret
-                        ul.dropdown-menu(role='menu')
-                            li
-                                a(href='#') Action #1
-                            li
-                                a(href='#') Action #2
-                            li
-                                a(href='#') Action #3
-                            li.divider
-                            li
-                                a(href='#') Link to another page
-
-
     div.container-fluid
         div#accordion.panel-group.col-lg-10.col-lg-offset-1
             div.panel.panel-default
@@ -46,7 +17,9 @@ block content
                                         td Name
                                         td Address
                                         s
-            - for(var i = 0; i < 30; i++){
+            - var from = 50
+            - var to = from + 50
+            - for(var i = from; i < to; i++){
 
                 div.panel.panel-default
                     div.panel-heading
@@ -72,6 +45,7 @@ block content
                                                     li Date: #{data[i].order.shippedDate}
                                                     li Required: #{data[i].order.requiredDate}
                                                     li Shipped: #{data[i].order.shippedDate}
+
                                             td
                                                 ul
                                                     li Name: #{data[i].order.shipName}
@@ -80,16 +54,19 @@ block content
                                                     li Zip: #{data[i].order.shipPostalCode}
                                                     li Country: #{data[i].order.shipCountry}
                                             td
-                                                .btn-group
-                                                    button.btn.btn-default
-                                                        a(href='#')
-                                                            span.glyphicon.glyphicon-user
-                                                    button.btn.btn-primary
-                                                        a(href='#')
-                                                            span.glyphicon.glyphicon-pencil
-                                                    button.btn.btn-danger
-                                                        a(href='#')
-                                                            span.glyphicon.glyphicon-remove
+
+                                                a(href='http://127.0.0.1:3000/customer/' + data[i].order.customer)
+                                                    button.btn.btn-default(type="button", trigger="hover", data-toggle="popover", data-placement="top", title="Navigate to customer")
+                                                        span.glyphicon.glyphicon-user
+                                                a(href='http://127.0.0.1:3000/employee/' + data[i].order.employee)
+                                                    button.btn.btn-default(type="button", data-toggle="tooltip", data-placement="top", title="Navigate to Employee")
+                                                        span.glyphicon.glyphicon-user
+                                                a(href='http://127.0.0.1:3000/employee/' + data[i].order.employee)
+                                                    button.btn.btn-default(type="button", data-toggle="tooltip", data-placement="top", title="Edit order")
+                                                        span.glyphicon.glyphicon-pencil
+                                                button.btn.btn-default(type="button", data-toggle="tooltip", data-placement="top", title="Delete order", class= "deleteOrder", id=data[i]._id)
+                                                    span.glyphicon.glyphicon-remove
+
                                 table.table.table-striped
                                     tr
                                         th Product
@@ -115,3 +92,31 @@ block content
                                         td YET
                                         td sum
             - }
+
+
+            script(type='text/javascript').
+                $(".deleteOrder").on("click", function(){
+                    alert("Our id: " + $(this).attr("id"));
+                    $.ajax({
+                        url: '/orders/' + $(this).attr("id"),
+                        type: 'DELETE',
+                        success: function(response) {
+
+                            //var url = $(this).response("url");
+                            //window.location.replace(response);
+                            document.write(response);
+                            document.close();
+                        }});
+                });
+
+
+
+
+
+
+
+
+
+
+
+
