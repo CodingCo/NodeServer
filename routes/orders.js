@@ -29,8 +29,16 @@ router.put('/', function (req, res) {
     console.log("");
 });
 
-router.delete('/', function (req, res) {
-    console.log("");
+router.delete('/:id', function (request, response) {
+    var id = request.params.id;
+
+    request.db.deleteOrderDetails(id,function(err, data){
+        if (err) {
+            response.send(err);
+        }
+        response.render("verify",null);
+    });
+    console.log("delete test");
 });
 
 module.exports = router;
