@@ -17,30 +17,24 @@ block content
                         tbody
                             if customer
                                 script.
-                                    var customer = !{JSON.stringify(customer)}
-                                    var str = "";
-                                    for (var item in customer) {
-                                        var name = customer[item];
-                                        var prop = item;
-                                        str += "<tr>";
-                                        str += "<td>" + prop;
-                                        str += "<td>" + name;
-                                        str += "</tr>";
-                                    }
-                                    $('tbody').html(str);
+                                    person = !{JSON.stringify(customer)}
                             else
                                 script.
-                                    var employee = !{JSON.stringify(employee)}
-                                    var str = "";
-                                    for (var item in employee) {
-                                        var name = employee[item];
-                                        var prop = item;
-                                        str += "<tr>";
-                                        str += "<td>" + prop;
-                                        str += "<td>" + name;
-                                        str += "</tr>";
-                                    }
-                                    $('tbody').html(str);
+                                    person = !{JSON.stringify(employee)}
+
+                            script.
+                                var str = "";
+                                for (var item in person) {
+                                    var name = person[item];
+                                    var prop = item;
+                                    str += "<tr>";
+                                    str += "<td>" + prop;
+                                    str += "<td>" + name;
+                                    str += "</tr>";
+                                }
+
+                                $('tbody').html(str);
+
         .row
             .col-md-1
                 button.btn.btn-default.btn-lg(type='button' id='backbtn' onclick="location.href='../orders'")
