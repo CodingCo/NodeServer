@@ -12,11 +12,6 @@ block content
     div.container-fluid
         div#accordion.panel-group.col-lg-10.col-lg-offset-1
             p(class="pageInfo")=fromTo
-            #navButtons
-                button.btn.btn-default(class='prev') prev #{results}
-                button.btn.btn-default(class='next') next #{results}
-                input(class='pagePerSite', value=results, placeholder='results per site')
-
 
             div.panel.panel-default
                 div.panel-heading
@@ -108,7 +103,16 @@ block content
 
             p(class="pageInfo")=fromTo
 
-
+    div.container-fluid
+        div#accordion.panel-group.col-lg-10.col-lg-offset-1
+            #navButtons
+                .form-inline
+                    .form-group
+                        button.btn.btn-default(class='prev') prev #{results}
+                    .form-group
+                        button.btn.btn-default(class='next') next #{results}
+                    .form-group
+                        input(class='form-control pagePerSite', value=results, type="text" max="100" placeholder='results per site')
 
             script(type='text/javascript').
                 $(".deleteOrder").on("click", function(){
@@ -156,21 +160,5 @@ block content
 
 
                 });
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 
 

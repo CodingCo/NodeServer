@@ -24,17 +24,16 @@ ul{
     table-layout: fixed;
 }
 
-
-
 .btn-group{
     margin-top: 5%;
     margin-bottom: 0%;
-    align: right;
+
 }
 
 #navButtons{
     position: fixed;
     top: 93%;
+    width: 100%;
 }
 
 .pagePerSite{
