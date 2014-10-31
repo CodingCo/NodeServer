@@ -37,9 +37,11 @@ router.delete('/:id', function (request, response) {
         if (err) {
             response.send(err);
         }
+
         response.render("verify",null);
+        console.log("Succes?");
     });
-    console.log("delete test");
+
 });
 
 module.exports = router;
