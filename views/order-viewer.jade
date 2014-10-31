@@ -3,8 +3,18 @@ extends layout
 
 block content
 
+    - var left = parseInt(page) * parseInt(results)
+    - var right = parseInt(left) + parseInt((results))
+    - var fromTo = 'Page ' + page + '  [' + left + ' - ' + right + ']'
+
+
+
     div.container-fluid
         div#accordion.panel-group.col-lg-10.col-lg-offset-1
+            p(class="pageInfo")=fromTo
+            button.btn.btn-default(class='prev') prev #{results}
+            button.btn.btn-default(class='next') next #{results}
+            input(class='pagePerSite', value=results, placeholder='results per site')
             div.panel.panel-default
                 div.panel-heading
                     h4.panel-title
@@ -16,10 +26,10 @@ block content
                                         td Date
                                         td Name
                                         td Address
-                                        s
+
             - var from = 0
             - var to = from + 50
-            - for(var i = from; i < to; i++){
+            - for(var i = 0; i < data.length; i++){
 
                 div.panel.panel-default
                     div.panel-heading
@@ -54,14 +64,13 @@ block content
                                                     li Zip: #{data[i].order.shipPostalCode}
                                                     li Country: #{data[i].order.shipCountry}
                                             td
-
-                                                a(href='http://127.0.0.1:3000/customer/' + data[i].order.customer)
+                                                a(href='../customer/' + data[i].order.customer)
                                                     button.btn.btn-default(type="button", trigger="hover", data-toggle="popover", data-placement="top", title="Navigate to customer")
                                                         span.glyphicon.glyphicon-user
-                                                a(href='http://127.0.0.1:3000/employee/' + data[i].order.employee)
+                                                a(href='../employee/' + data[i].order.employee)
                                                     button.btn.btn-default(type="button", data-toggle="tooltip", data-placement="top", title="Navigate to Employee")
                                                         span.glyphicon.glyphicon-user
-                                                a(href='http://127.0.0.1:3000/employee/' + data[i].order.employee)
+                                                a(href='../employee/' + data[i].order.employee)
                                                     button.btn.btn-default(type="button", data-toggle="tooltip", data-placement="top", title="Edit order")
                                                         span.glyphicon.glyphicon-pencil
                                                 button.btn.btn-default(type="button", data-toggle="tooltip", data-placement="top", title="Delete order", class= "deleteOrder", id=data[i]._id)
@@ -93,10 +102,11 @@ block content
                                         td sum
             - }
 
-            button.btn.btn-default
-                span.glyphicon.glyphicon-arrow-left 0
-            button.btn.btn-default 50
-                span.glyphicon.glyphicon-arrow-right
+
+            p(class="pageInfo")=fromTo
+            button.btn.btn-default(class='prev') prev #{results}
+            button.btn.btn-default(class='next') next #{results}
+            input(class='pagePerSite', value=results, placeholder='results per site')
 
 
             script(type='text/javascript').
@@ -113,6 +123,46 @@ block content
                             document.close();
                         }});
                 });
+                var numberOfResults = parseInt(($(".pagePerSite").val()));
+                var currentPage = parseInt($(".pageInfo").text().split('[')[0].split(' ')[1]);
+                //alert(currentPage);
+
+                if(isNaN(currentPage)){     //SHOW ALL
+                        currentPage = -1;
+                        $(".prev").prop("disabled", true);
+                        $(".pageInfo").text('Shows all orderdetails. Type number of results, and press the next-button');
+                }else{
+                    $(".prev").prop("disabled", false);
+                    $(".next").prop("disabled", false);
+                    if(currentPage == 0){   // DETAIL VIEW PAGE 1
+                        $(".prev").prop("disabled", true);
+                    } else{                 // DETAIL VIEW PAGE > 1
+                        $(".prev").prop("disabled", false);
+                    }
+                }
+
+                $(".prev").on("click", function() {
+                    numberOfResults = parseInt(($(".pagePerSite").val()));
+                    window.location.href = '../../' + 'orders/' + (currentPage-1) + '/' + numberOfResults;
+                });
+
+                $(".next").on("click", function() {
+                    var value = $.trim($(".pagePerSite").val());
+                    if (value.length > 0) {
+                        numberOfResults = parseInt(($(".pagePerSite").val()));
+                        window.location.href = '../../' + 'orders/' + (currentPage+1) + '/' + numberOfResults;
+                    } else{
+                        alert('Remember to specify pages per site!');
+                    }
+
+
+                });
+
+
+
+
+
+
 
 
 

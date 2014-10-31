@@ -1,7 +1,7 @@
 var mongoose = require('mongoose');
 var model = require('./model');
-var url = "mongodb://localhost/webshop";
 
+var url = 'mongodb://test:test@ds047020.mongolab.com:47020/firstdb';
 
 process.on('SIGINT', function () {
     mongoose.connection.close(function () {

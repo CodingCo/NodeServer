@@ -3,7 +3,7 @@ var async = require('async');
 var mongoose = require('mongoose');
 var model = require('./model');
 
-var dbUrl = "mongodb://localhost/northwind";
+var dbUrl = 'mongodb://test:test@ds047020.mongolab.com:47020/firstdb';
 
 function readData(path) {
     var file = fs.readFileSync(path, 'utf8');

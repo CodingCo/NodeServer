@@ -19,8 +19,12 @@ router.get('/:page/:results', function (request, response) {
         if (err) {
             response.send(err);
         }
-        console.log("hello world");
-        response.render('order-viewer', {data: data});
+        console.log("hello world " + data);
+        response.render('order-viewer', {
+            data: data,
+            page: request.params.page,
+            results: request.params.results
+        });
     });
 });
 
