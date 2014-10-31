@@ -112,7 +112,6 @@ block content
 
             script(type='text/javascript').
                 $(".deleteOrder").on("click", function(){
-                    alert("Our id: " + $(this).attr("id"));
                     $.ajax({
                         url: '/orders/' + $(this).attr("id"),
                         type: 'DELETE',
@@ -126,7 +125,6 @@ block content
                 });
                 var numberOfResults = parseInt(($(".pagePerSite").val()));
                 var currentPage = parseInt($(".pageInfo").text().split('[')[0].split(' ')[1]);
-                //alert(currentPage);
 
                 if(isNaN(currentPage)){     //SHOW ALL
                         currentPage = -1;

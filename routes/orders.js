@@ -19,7 +19,6 @@ router.get('/:page/:results', function (request, response) {
         if (err) {
             response.send(err);
         }
-        console.log("hello world " + data);
         response.render('order-viewer', {
             data: data,
             page: request.params.page,
@@ -31,7 +30,6 @@ router.get('/:page/:results', function (request, response) {
 
 router.put('/', function (request, response) {
 
-    console.log("");
 });
 
 router.delete('/:id', function (request, response) {
@@ -41,9 +39,8 @@ router.delete('/:id', function (request, response) {
         if (err) {
             response.send(err);
         }
-
         response.render("verify",null);
-        console.log("Succes?");
+
     });
 
 });

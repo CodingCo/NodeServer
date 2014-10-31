@@ -34,11 +34,7 @@ ul{
 
 #navButtons{
     position: fixed;
-    top: 95%;
-}
-
-#navButtons {
-    opacity: 0.8;
+    top: 93%;
 }
 
 .pagePerSite{
