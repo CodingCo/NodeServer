@@ -12,9 +12,12 @@ block content
     div.container-fluid
         div#accordion.panel-group.col-lg-10.col-lg-offset-1
             p(class="pageInfo")=fromTo
-            button.btn.btn-default(class='prev') prev #{results}
-            button.btn.btn-default(class='next') next #{results}
-            input(class='pagePerSite', value=results, placeholder='results per site')
+            #navButtons
+                button.btn.btn-default(class='prev') prev #{results}
+                button.btn.btn-default(class='next') next #{results}
+                input(class='pagePerSite', value=results, placeholder='results per site')
+
+
             div.panel.panel-default
                 div.panel-heading
                     h4.panel-title
@@ -104,9 +107,7 @@ block content
 
 
             p(class="pageInfo")=fromTo
-            button.btn.btn-default(class='prev') prev #{results}
-            button.btn.btn-default(class='next') next #{results}
-            input(class='pagePerSite', value=results, placeholder='results per site')
+
 
 
             script(type='text/javascript').

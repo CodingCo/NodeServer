@@ -32,3 +32,16 @@ ul{
     align: right;
 }
 
+#navButtons{
+    position: fixed;
+    top: 95%;
+}
+
+#navButtons {
+    opacity: 0.8;
+}
+
+.pagePerSite{
+    width: 10%;
+}
+
