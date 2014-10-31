@@ -62,13 +62,13 @@ block content
                                                     li Zip: #{data[i].order.shipPostalCode}
                                                     li Country: #{data[i].order.shipCountry}
                                             td
-                                                a(href='../customer/' + data[i].order.customer)
+                                                a(href='../../customer/' + data[i].order.customer)
                                                     button.btn.btn-default(type="button", trigger="hover", data-toggle="popover", data-placement="top", title="Navigate to customer")
                                                         span.glyphicon.glyphicon-user
-                                                a(href='../employee/' + data[i].order.employee)
+                                                a(href='../../employee/' + data[i].order.employee)
                                                     button.btn.btn-default(type="button", data-toggle="tooltip", data-placement="top", title="Navigate to Employee")
                                                         span.glyphicon.glyphicon-user
-                                                a(href='../employee/' + data[i].order.employee)
+                                                a(href='#' + data[i].order.employee)
                                                     button.btn.btn-default(type="button", data-toggle="tooltip", data-placement="top", title="Edit order")
                                                         span.glyphicon.glyphicon-pencil
                                                 button.btn.btn-default(type="button", data-toggle="tooltip", data-placement="top", title="Delete order", class= "deleteOrder", id=data[i]._id)
